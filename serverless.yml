@@ -1,0 +1,35 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: yujin
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: portone-access
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: portone
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    PORTONE_API_KEY: ${env:PORTONE_API_KEY}
+    PORTONE_API_SECRET: ${env:PORTONE_API_SECRET}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+  getToken:
+    handler: index.getToken
+    events:
+      - httpApi:
+          path: /get-token
+          method: post
+  refund:
+    handler: index.refund
+    events:
+      - httpApi:
+          path: /refund
+          method: post

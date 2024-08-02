@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "serverless-dotenv-plugin": "^6.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
